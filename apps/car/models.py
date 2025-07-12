@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from generics.models import TitleInfo, DateTimeInfo
 
@@ -55,7 +56,7 @@ class Car(DateTimeInfo):
     image = models.ImageField(upload_to='cars/')
     price = models.CharField(max_length=30)
     consumption = models.CharField(max_length=30)
-    year_publication = models.IntegerField()
+    year_publication = models.PositiveSmallIntegerField( validators=[MinValueValidator(1886), MaxValueValidator(2100)])
     wheel = models.CharField(max_length=10, choices=WHEEL_CHOICES, default='left')
     description = models.TextField()
     gearbox_type = models.ForeignKey(GearboxType, on_delete=models.SET_NULL, null=True)
