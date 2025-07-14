@@ -1,3 +1,5 @@
+import logging
+
 from rest_framework import viewsets, filters
 from .models import (
     Car, CarBrand, CarType, CarBrandType,
@@ -10,9 +12,14 @@ from .serializers import (
 )
 from .filters import CarFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from .permissions import IsAdminOrReadOnly, IsAdminANDLAdminOrReadOnly
+
+
+logger = logging.getLogger(__name__)
 
 
 class CarViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAdminANDLAdminOrReadOnly]
     queryset = Car.objects.all().order_by('-year_publication')
     serializer_class = CarSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]

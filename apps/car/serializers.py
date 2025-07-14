@@ -15,9 +15,12 @@ class CarTypeSerializer(serializers.ModelSerializer):
 
 
 class CarBrandTypeSerializer(serializers.ModelSerializer):
+    car_brand = serializers.CharField(source='car_brand.title', read_only=True)
+    car_type = serializers.CharField(source='car_type.title', read_only=True)
+
     class Meta:
         model = CarBrandType
-        fields = '__all__'
+        fields = ['id', 'car_brand', 'car_type']
 
 
 class GearboxTypeSerializer(serializers.ModelSerializer):
