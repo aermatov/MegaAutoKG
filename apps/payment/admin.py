@@ -4,7 +4,7 @@ from apps.payment.models import Booking, PaymentStatus, Payment
 
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['id', 'start_time', 'end_time', 'total_cost', 'user', 'car']
+    list_display = ['id', 'start_time', 'end_time', 'total_cost', 'user', 'car', 'status']
 
 
 admin.site.register(Booking, BookingAdmin)
