@@ -60,4 +60,3 @@ class FuelTypeViewSet(viewsets.ModelViewSet):
 class CarStatusHistoryViewSet(viewsets.ModelViewSet):
     queryset = CarStatusHistory.objects.all().order_by('-changed_at')
     serializer_class = CarStatusHistorySerializer
-
